@@ -19,7 +19,10 @@
   <p>
     <%= f.label :image, 'Logo:' %><br>
     <%= f.file_field :image %><br>
+    <!-- Helps to persist the image file across form redisplays -->
+    <%= f.hidden_field :image_cache %>
   </p>
   <%= f.submit %>
 <% end %>
+<%= render 'shared/errors', object: @book %>
 <%= link_to 'Back', { action: :index } %>

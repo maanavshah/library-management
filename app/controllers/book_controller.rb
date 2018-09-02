@@ -36,7 +36,7 @@ class BookController < ApplicationController
 
   # update - permit params
   def book_param
-    params.require(:book).permit(:title, :price, :subject_id, :description, :image)
+    params.require(:book).permit(:title, :price, :subject_id, :description, :image, :image_cache)
   end
 
   def update
