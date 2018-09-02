@@ -1,4 +1,6 @@
 class BookController < ApplicationController
+  protect_from_forgery with: :null_session  # remove csrf authentication on http requests
+
   def index
     @books = Book.all
   end
@@ -14,13 +16,13 @@ class BookController < ApplicationController
 
   # create - permit params
   def book_params
-    params.require(:books).permit(:title, :price, :subject_id, :description)
+    params.require(:book).permit(:title, :price, :subject_id, :description, :image)
   end
 
   def create
     @book = Book.new(book_params)
     if @book.save
-      redirect_to action: :index
+      redirect_to action: :show, id: @book
     else
       @subjects = Subject.all
       render :new
@@ -34,7 +36,7 @@ class BookController < ApplicationController
 
   # update - permit params
   def book_param
-    params.require(:book).permit(:title, :price, :subject_id, :description)
+    params.require(:book).permit(:title, :price, :subject_id, :description, :image)
   end
 
   def update
