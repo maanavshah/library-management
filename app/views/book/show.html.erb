@@ -9,7 +9,7 @@
 <p><%= @book.description %></p>
 <% if @book.image? %>
 <strong>Image: </strong>
-<p><%= image_tag(@book.image.url, alt: 'Image') %></p>
+<p><%= image_tag(@book.image.thumb.url, alt: 'Image') %></p>
 <% end %>
 <hr/>
 <%= link_to 'Back', { action: :index } %>
