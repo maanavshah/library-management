@@ -1,5 +1,5 @@
 class BookController < ApplicationController
-  protect_from_forgery with: :null_session  # remove csrf authentication on http requests
+  # protect_from_forgery with: :null_session  # remove csrf authentication on http requests
 
   def index
     @books = Book.all
