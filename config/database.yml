@@ -5,8 +5,8 @@ default: &default
 development:
   adapter: postgresql
   database: library_development
-  username: maanavshah
-  password: maanavshah
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
   encoding: unicode
   host: localhost
   pool: 5
@@ -14,8 +14,16 @@ development:
 test:
   adapter: postgresql
   database: library_test
-  username: maanavshah
-  password: maanavshah
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
   encoding: unicode
   host: localhost
   pool: 5
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: library_production
+  pool: 5
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
