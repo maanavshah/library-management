@@ -1,24 +1,142 @@
-# README
+# library-management
+Library Management System - Ruby on Rails
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Features
+--------
 
-Things you may want to cover:
+- Signup/Login users
+- Books CRUD
+- Mail book details to user (Async)
+- Subject-wise Categorization of Books
 
-* Ruby version
+Gems
+----
 
-* System dependencies
+- carrierwave
+- mini_magick
+- file_validators
+- devise
+- sidekiq
 
-* Configuration
+Installation
+------------
 
-* Database creation
+1. Create project:
 
-* Database initialization
+```ruby
+    $ rails new library-management
+```
 
-* How to run the test suite
+2. Setup Postgres
 
-* Services (job queues, cache servers, search engines, etc.)
+- Create a postgres user
 
-* Deployment instructions
+```ruby
+    $ sudo -u postgres createuser maanavshah -s
+```
 
-* ...
+- Login to psql
+
+```ruby
+    $ sudo -u postgres psql
+```
+
+- Set user's password
+
+```ruby
+    \password maanavshah
+```
+
+- Add the following line to gemfile
+
+```ruby
+    gem 'pg'
+```
+
+- Update the database.yml for postgres
+
+- Setup library-management database
+
+```ruby
+    $ rake db:create
+    $ rake db:migrate
+```
+
+3. Generate Book and Subject model
+
+```ruby
+    $ rails generate model Book
+    $ rails generate model Subject
+```
+
+4. Generate Book and Subject migration
+
+```ruby
+    $ rails generate migration books
+    $ rails generate migration subjects
+
+    $ rails db:migrate
+```
+
+5. Generate controller
+
+```ruby
+    $ rails generate controller Book
+```
+
+6. Add Carrierwave for image storage
+
+https://code.tutsplus.com/articles/uploading-with-rails-and-carrierwave--cms-28409
+
+```ruby
+    $ rails generate uploader Image
+
+    $ rails generate migration add_image_to_books image:string
+
+    $ rake db:migrate
+```
+
+7. Add Minimagic to generate thumbnail and support carrierwave
+
+If images are already uploaded then run:
+
+```ruby
+    $ rails c
+```
+
+```ruby
+    Book.find_each {|book| book.image.recreate_versions!(:thumb) if book.image?}
+```
+
+8. Adding Devise and User
+
+https://guides.railsgirls.com/devise
+
+```ruby
+    $ bundle install
+    $ rails g devise:install
+```
+Ensure you have defined default url options in your environments files. Open up config/environments/development.rb and add this line:
+
+```ruby
+   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+```
+
+```ruby
+    $ rails g devise user
+    $ rails db:migrate
+```
+
+9. Add ActionMailer
+
+```ruby
+    $ rails generate mailer UserMailer
+```
+
+10. Sidekiq with ActionMailer
+
+https://gist.github.com/maxivak/690e6c353f65a86a4af9
+
+You can create environment variables using:
+
+http://railsapps.github.io/rails-environment-variables.html
