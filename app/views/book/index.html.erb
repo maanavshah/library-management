@@ -15,6 +15,7 @@
       <p>
       <li><b><%= link_to book.title, { action: :show, id: book.id } %></b></li>
       <%= link_to 'Edit', { action: :edit, id: book.id } %>
+      <%= link_to 'Mail', { action: :send_details, id: book.id } %>
       <%= link_to 'Delete', { action: :delete, id: book.id } %>
       </p>
     <% end %>

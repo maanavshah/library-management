@@ -31,3 +31,6 @@
 
 # Carrierwave Image uploads
 public/uploads
+
+# Configurations for local environment
+/config/local_env.yml

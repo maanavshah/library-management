@@ -54,6 +54,11 @@ class BookController < ApplicationController
     redirect_to action: :index
   end
 
+  def send_details
+    UsersMailer.send_book_details(params[:id], current_user.id).deliver_now
+    redirect_to action: :index
+  end
+
   def show_subjects
     @subject = Subject.find(params[:id])
   end

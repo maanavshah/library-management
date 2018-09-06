@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hello <%= @user.email %>!</h1>
+    <p>Details ::</p>
+    <strong>Title: </strong>
+    <h1><%= @book.title %></h1>
+    <strong>Price: </strong>
+    <p> Rs.<%= @book.price %></p>
+    <strong>Subject: </strong>
+    <strong>Created Date: </strong>
+    <p> <%= @book.created_at %></p>
+    <strong>Description: </strong>
+    <p><%= @book.description %></p>
+    <% if @book.image? %>
+    <strong>Image: </strong>
+    <p><%= image_tag(@book.image.thumb.url, alt: 'Image') %></p>
+    <% end %>
+    <hr/>
+  </body>
+</html>
