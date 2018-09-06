@@ -55,7 +55,9 @@ class BookController < ApplicationController
   end
 
   def send_details
-    UsersMailer.send_book_details(params[:id], current_user.id).deliver_now
+    # Non-sidekiq delivery methods  =>  deliver, deliver_now
+    # Sidekiq delivery methods      =>  deliver_later
+    UsersMailer.send_book_details(params[:id], current_user.id).deliver_later
     redirect_to action: :index
   end
 

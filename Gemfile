@@ -41,6 +41,7 @@ gem 'mini_magick' # Generate thumbnails
 gem 'file_validators'
 gem 'devise'
 gem 'jquery-rails'
+gem 'sidekiq'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
