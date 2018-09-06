@@ -10,7 +10,8 @@
     <%= javascript_include_tag "jquery", "application" %>
   </head>
 
-  <body>
+  <body style="margin-top: 100px">
+  <center>
     <% if user_signed_in? %>
       Logged in as <strong><%= current_user.email %></strong>.
       <br><br>
@@ -27,5 +28,6 @@
       <p class="alert alert-danger"><%= alert %></p>
     <% end %>
     <%= yield %>
+    </center>
   </body>
 </html>
