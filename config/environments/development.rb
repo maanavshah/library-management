@@ -41,6 +41,7 @@ Rails.application.configure do
   config.active_support.deprecation = :log
 
   # config.active_job.queue_adapter = :sidekiq
+  config.active_job.queue_adapter = :inline
 
   config.action_mailer.perform_deliveries = true
 
