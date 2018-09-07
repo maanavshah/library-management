@@ -12,7 +12,7 @@ Features
 Gems
 ----
 
-- carrierwave
+- Carrierwave
 - mini_magick
 - file_validators
 - devise
@@ -20,6 +20,21 @@ Gems
 
 Installation
 ------------
+
+        git clone http://www.github.com/maanavshah/library-management
+
+        cd library-management
+
+        bundle install
+
+        rake db:create
+
+        rake db:migrate
+
+        rails s
+
+Usage
+-----
 
 1. Create project:
 
@@ -140,3 +155,65 @@ https://gist.github.com/maxivak/690e6c353f65a86a4af9
 You can create environment variables using:
 
 http://railsapps.github.io/rails-environment-variables.html
+
+Heroku Deployment
+-----------------
+
+https://devcenter.heroku.com/articles/getting-started-with-rails5
+
+
+1.  Login heroku
+
+        heroku login
+
+2.  Add heroku remote library-management
+
+        heroku git:remote -a library-management-7
+
+3.  Push code heroku master
+
+        git push heroku master
+
+4.  Add postgresql addon to heroku
+
+        heroku addons:create heroku-postgresql:hobby-dev
+
+5.  Rake setup (No need for rake db:create)
+
+        heroku run rake db:migrate
+
+6.  Add environment variables GMAIL
+
+        heroku config:add GMAIL_USERNAME=replymailer7@gmail.com
+        heroku config:add GMAIL_PASSWORD=maanavshah@123
+
+7.  Scale Web application
+
+        heroku ps:scale web=1
+
+8.  Open website in browser
+
+        heroku open
+
+9. Check Logs
+
+        heroku logs
+        heroku logs --tail
+
+10. Bundle rails console and sidekiq
+
+        heroku run bundle exec rails c
+        heroku run bundle exec sidekiq
+
+Gem alternatives
+----------------
+
+- devise        -  JWT (authentication and authorization)
+- god           -  track sidekiq/nginx if disabled, then automatically re-enable
+- foundation    -  bootstrap
+- scss          -  sass mixin
+- carrierwave   -  ActiveStorage
+- state-machine
+- kaminari
+- turbolinks
+- jbuilder
